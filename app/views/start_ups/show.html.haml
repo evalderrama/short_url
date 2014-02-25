@@ -1,0 +1,11 @@
+%h2 Start Up
+
+%p
+  %strong Name:
+  = @start_up.name
+%p
+  %strong Description:
+  = @start_up.description
+= link_to 'Edit', edit_start_up_path(@start_up)
+|
+\#{link_to 'Back', start_ups_path}

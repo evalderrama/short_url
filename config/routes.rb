@@ -1,9 +1,21 @@
 ShortUrl::Application.routes.draw do
+  resources :start_ups
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'pages#home'
+
+  constraints(Constrainer::UserUrlConstrainer.new) do
+    get '/:id', to: "users#show", as: 'short_user'
+  end
+
+  constraints(Constrainer::StartUpUrlConstrainer.new) do
+    get '/:id', to: "start_ups#show", as: 'short_start_up'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
